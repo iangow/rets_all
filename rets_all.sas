@@ -13,7 +13,7 @@ DATA crsp_dates;
 RUN;
 
 PROC SQL;
-  CREATE TABLE annc_events AS
+  CREATE VIEW annc_events AS
   SELECT  gvkey, datadate, rdq,
 	intnx('MONTH', rdq, 0, 'BEGINNING') AS annc_month format=yymmdd10.
   FROM comp.fundq
@@ -21,18 +21,18 @@ PROC SQL;
     AND consol = 'C' AND popsrc = 'D' 
     AND fqtr = 4 AND fyr = 12 AND rdq IS NOT NULL;
 
-  CREATE TABLE annc_months AS
+  CREATE VIEW annc_months AS
   SELECT month AS annc_month, td AS annc_td,
   	annc_td - 11 AS start_td, annc_td + 6 AS end_td
   FROM crsp_dates;
 
-  CREATE TABLE td_link AS 
+  CREATE VIEW td_link AS 
   SELECT annc_month, td - annc_td AS rel_td, date
   FROM crsp_dates 
   INNER JOIN annc_months
   ON td BETWEEN start_td AND end_td;
 
-  CREATE TABLE ccm_link AS
+  CREATE VIEW ccm_link AS
   SELECT gvkey, lpermno AS permno, linkdt, 
   	coalesce(linkenddt, max(linkenddt)) AS linkenddt
   FROM crsp.ccmxpf_lnkhist
