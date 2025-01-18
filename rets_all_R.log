@@ -1,0 +1,28 @@
+
+rets_all_pg.R:
+real	1m42.232s
+user	0m1.530s
+sys	0m0.243s
+
+rets_all_compute_pg.R:
+real	0m8.374s
+user	0m1.501s
+sys	0m0.174s
+
+rets_all_compute_pg_wrds.R:Note: method with signature ‘DBIConnection#Id’ chosen for function ‘dbExistsTable’,
+ target signature ‘duckdb_connection#Id’.
+ "duckdb_connection#ANY" would also be valid
+
+real	0m18.839s
+user	0m4.350s
+sys	0m1.881s
+
+rets_all_pq.R:
+real	0m1.010s
+user	0m1.645s
+sys	0m0.166s
+
+rets_all_compute_pq.R:
+real	0m0.867s
+user	0m0.978s
+sys	0m0.085s
